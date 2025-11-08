@@ -1,4 +1,4 @@
-# Google Cybersecurity Certificate: Linux Least Privilege Lab
+# linux-least-privilege-lab
 
 This project demonstrates a hands-on audit and remediation of file permissions in a Linux environment to enforce the Principle of Least Privilege. This was a lab exercise from the Google Cybersecurity Certificate program.
 
