@@ -1,35 +1,59 @@
-# Linux Least Privilege Lab Report
+# Google Cybersecurity Certificate: Linux Least Privilege Lab
+
+This project demonstrates a hands-on audit and remediation of file permissions in a Linux environment to enforce the Principle of Least Privilege. This was a lab exercise from the Google Cybersecurity Certificate program.
+
+---
 
 ## Objective
-As part of the Google Cybersecurity Certificate, my objective in this lab was to perform a hands-on authorization audit of a user's project directory (`/home/researcher2/projects`) and remediate any findings to enforce the principle of least privilege. The goal was to ensure that files and directories were not exposed to unauthorized access or modification.
 
-## Assessment Phase
-Operating as the `researcher2` user, I began by establishing a baseline of the directory's security posture. I used `ls -la` to list all files, including hidden files, and their detailed permissions. This initial inspection revealed several critical misconfigurations:
+To perform a security audit on a user's project directory, identify file and directory permissions that violate security policy, and use `chmod` to apply the correct permissions.
 
-*   **World-Writable File:** `project_k.txt` had permissions `-rw-rw-rw-`, granting write access to "other" users, which violates policy.
-*   **Insecure Hidden File:** The hidden archive `.project_x.txt` had permissions `-rw--w----`. Policy required it to be read-only for user and group, but it retained write permissions.
-*   **Excessive Directory Permissions:** The `drafts/` directory had permissions `drwx--x---`. This improperly granted group members execute access, allowing them to "enter" the directory and access its contents.
+---
 
-## Remediation Phase
-I addressed each finding systematically by applying targeted `chmod` commands:
+## 1. Vulnerability Assessment
 
-1.  **Securing the World-Writable File:** To remove write access for "others" from `project_k.txt`:
-    ```bash
-    chmod o-w /home/researcher2/projects/project_k.txt
-    ```
-    (New Permissions: `-rw-rw-r--`)
+The first step was to assess the security posture of the `/home/researcher2/projects` directory. Using `ls -la`, I identified several permission misconfigurations.
 
-2.  **Hardening the Hidden Archive:** To set read-only permissions for user and group (using numeric mode 440) on `.project_x.txt`:
-    ```bash
-    chmod 440 /home/researcher2/projects/.project_x.txt
-    ```
-    (New Permissions: `-r--r-----`)
+**Findings:**
+*   **World-Writable File:** `project_k.txt` had permissions `-rw-rw-rw-`, granting write access to all users on the system.
+*   **Insecure Hidden File:** `.project_x.txt` had write permissions (`-rw--w----`) when policy required it to be read-only.
+*   **Excessive Directory Permissions:** The `drafts/` directory (`drwx--x---`) improperly granted group members execute access, allowing them to traverse the directory.
 
-3.  **Securing the Directory:** To restrict access for the `drafts/` directory to only the user (using numeric mode 700):
-    ```bash
-    chmod 700 /home/researcher2/projects/drafts
-    ```
-    (New Permissions: `drwx------`)
+## 2. Permission Hardening (Remediation)
 
-## Result
-Upon completing the remediation, I re-ran `ls -la` to verify all changes were applied. The directory now adheres to the principle of least privilege: all world-writable flags are gone, sensitive files are restricted, and private directories are inaccessible to unauthorized groups. This exercise successfully mitigated the identified access control risks.
+I addressed each finding systematically using the `chmod` command to harden the permissions.
+
+#### Securing the World-Writable File
+Removed write access for the "other" category to align with policy.
+```bash
+chmod o-w /home/researcher2/projects/project_k.txt
+# New Permissions: -rw-rw-r--
+```
+
+#### Hardening the Hidden Archive
+Set the file to be read-only for the user and group, and assigned no permissions for "other".
+```bash
+chmod 440 /home/researcher2/projects/.project_x.txt
+# New Permissions: -r--r-----
+```
+
+#### Securing the Directory
+Restricted access to the `drafts/` directory to be accessible only by the owner.
+```bash
+chmod 700 /home/researcher2/projects/drafts
+# New Permissions: drwx------
+```
+
+## 3. Final Result
+
+After applying the changes, a final `ls -la` verification confirmed that all permissions now adhere to the principle of least privilege. The identified access control risks were successfully mitigated, securing the project directory from unauthorized access and modification.
+
+---
+
+## Summary of Skills
+
+This lab demonstrates proficiency in fundamental Linux security administration:
+*   **File System Auditing:** Using `ls -la` to inspect and analyze file and directory permissions.
+*   **Access Control:** Understanding and applying the concepts of user, group, and other permissions.
+*   **Permission Management:** Using the `chmod` command with both symbolic (`o-w`) and numeric (`440`, `700`) modes to enforce security policies.
+*   **Principle of Least Privilege:** Practical application of a core cybersecurity principle in a Linux environment.
