@@ -63,3 +63,15 @@ This lab demonstrates proficiency in fundamental Linux security administration:
 ## Security Context
 
 The Principle of Least Privilege, as demonstrated in this lab, is a fundamental security concept that directly addresses vulnerabilities such as "Broken Access Control" from the OWASP Top 10. By ensuring users and processes only have the minimum necessary permissions to perform their tasks, the attack surface is significantly reduced, preventing unauthorized access to sensitive data and system functions. This practice is crucial for maintaining the confidentiality, integrity, and availability of information systems.
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+---
+
+## Contributing
+
+Contributions are welcome! If you have suggestions for improvements or want to enhance the lab, please feel free to open an issue or submit a pull request.
