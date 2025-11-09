@@ -68,7 +68,7 @@ The Principle of Least Privilege, as demonstrated in this lab, is a fundamental 
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the [MIT License](./LICENSE.md) - see the LICENSE.md file for details.
 
 ---
 
