@@ -57,3 +57,9 @@ This lab demonstrates proficiency in fundamental Linux security administration:
 *   **Access Control:** Understanding and applying the concepts of user, group, and other permissions.
 *   **Permission Management:** Using the `chmod` command with both symbolic (`o-w`) and numeric (`440`, `700`) modes to enforce security policies.
 *   **Principle of Least Privilege:** Practical application of a core cybersecurity principle in a Linux environment.
+
+---
+
+## Security Context
+
+The Principle of Least Privilege, as demonstrated in this lab, is a fundamental security concept that directly addresses vulnerabilities such as "Broken Access Control" from the OWASP Top 10. By ensuring users and processes only have the minimum necessary permissions to perform their tasks, the attack surface is significantly reduced, preventing unauthorized access to sensitive data and system functions. This practice is crucial for maintaining the confidentiality, integrity, and availability of information systems.
